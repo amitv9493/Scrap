@@ -18,12 +18,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from buyer.views import HomePageView
-
+from django.views.generic import TemplateView
 urlpatterns = [
     path("buyer/", include('buyer.urls')),
     path("seller/", include('seller.urls')),
-    path('', HomePageView.as_view(), name="Home"),
+    path('', TemplateView.as_view(template_name = "index.html"), name="Home"),
 
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
